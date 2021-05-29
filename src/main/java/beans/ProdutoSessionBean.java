@@ -17,4 +17,13 @@ public class ProdutoSessionBean {
         return (List<ProdutoEntity>) em.createNamedQuery("Produto.findAll").getResultList();
     }
 
+    public List<ProdutoEntity> getProdutosCategoria(String categoria) {
+        return (List<ProdutoEntity>) em.createNamedQuery("Produto.findAllCategory").setParameter("categoria", categoria).getResultList();
+    }
+
+    public List<String> getCategoriasDisponiveis() {
+        return (List<String>) em.createQuery("SELECT DISTINCT(p.categoria) FROM ProdutoEntity  p").getResultList();
+    }
+
+
 }

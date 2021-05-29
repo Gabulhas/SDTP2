@@ -23,4 +23,14 @@ public class ProdutoController {
         return produtos;
     }
 
+    public List<ProdutoEntity> getProdutosCategoria(String categoria) {
+        produtos = produtoSessionBean.getProdutos();
+        return produtoSessionBean.getProdutosCategoria(categoria);
+    }
+
+    public List<String> getCategoriasDisponiveis(){
+        return produtoSessionBean.getCategoriasDisponiveis();
+    }
+
+
 }
