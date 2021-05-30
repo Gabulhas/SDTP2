@@ -12,6 +12,9 @@ public class TransacaoEntity {
     private Date data;
     private int produtoId;
 
+
+    private int utilizadorId;
+
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -63,6 +66,16 @@ public class TransacaoEntity {
         this.produtoId = produtoId;
     }
 
+    @Basic
+    @Column(name = "utilizadorId")
+    public int getUtilizadorId() {
+        return utilizadorId;
+    }
+
+    public void setUtilizadorId(int utilizadorId) {
+        this.utilizadorId = utilizadorId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,6 +85,7 @@ public class TransacaoEntity {
 
         if (quantidade != that.quantidade) return false;
         if (produtoId != that.produtoId) return false;
+        if (utilizadorId != that.utilizadorId) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (tipo != null ? !tipo.equals(that.tipo) : that.tipo != null) return false;
         if (data != null ? !data.equals(that.data) : that.data != null) return false;
@@ -85,6 +99,7 @@ public class TransacaoEntity {
         result = 31 * result + quantidade;
         result = 31 * result + (data != null ? data.hashCode() : 0);
         result = 31 * result + produtoId;
+        result = 31 * result + utilizadorId;
         result = 31 * result + (id != null ? id.hashCode() : 0);
         return result;
     }

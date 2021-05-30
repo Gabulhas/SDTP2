@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Registrar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
+</head>
+
+<body>
+<ui:include src="navbar_inicial.xhtml"/>
+<f:view>
+    <div class="container">
+        <h1 class="title is-1">Registar</h1>
+
+        <div class="columns">
+            <div class="column">
+            </div>
+            <div class="column">
+                <h:form id="loginForm">
+                    <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control">
+                            <h:inputText maxlength="255" size="20" tabindex="10" value="#{clientBean.nome}"
+                                         styleClass="input" id="username"/>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <h:inputSecret maxlength="255" size="20" tabindex="20"
+                                           value="#{clientBean.password}" styleClass="input" id="password"/>
+                        </div>
+                    </div>
+                    <h:commandButton value="login"
+                                     action="#{clientBean.register()}" id="submit" styleClass="button is-primary"/>
+                </h:form>
+            </div>
+            <div class="column">
+            </div>
+            <div class="column">
+            </div>
+        </div>
+    </div>
+</f:view>
+</body>
+</html>

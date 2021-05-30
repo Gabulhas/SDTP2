@@ -44,13 +44,38 @@ public class ClientBean implements Serializable {
     }
 
     public String validate() {
-        String tempPassword = (String) em.createQuery("SELECT U.password FROM UtilizadoresEntity U WHERE U.nome = :nome").setParameter("nome", this.nome).getSingleResult();
-        if (tempPassword.equals(this.password)) {
+
+        UtilizadoresEntity temp = (UtilizadoresEntity) em.createNamedQuery("utilizadores.getUtilizadorNome").setParameter("nome", this.nome).getSingleResult();
+
+        if (temp.getPassword().equals(this.password)) {
+
+            //apagamos a password por questões de segurança
+            temp.setPassword(null);
+
+            //TODO: Diferenciar entre os tipos de utilizador
+            this.utilizadoresEntity = temp;
             return "catalogo";
         }
 
+        //TODO: Caso o utilizador não consiga dar login terá que dar erro
         return null;
     }
 
+    public String register() {
+        int tamanhoLista = em.createQuery("SELECT U.nome from UtilizadoresEntity U where U.nome = :nome").setParameter("nome", this.nome).getResultList().size();
+
+
+        //Se o user não está registado
+        if (tamanhoLista == 0) {
+            UtilizadoresEntity temp = new UtilizadoresEntity();
+            temp.setPassword(this.password);
+            temp.setNome(this.nome);
+            temp.setTipo("normal");
+            em.persist(temp);
+            return "ler_produto";
+        }
+        return "index";
+
+    }
 
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <div class="navbar has-background-dark	">
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <h:link class="navbar-item has-text-light " outcome="index">
+                    Página Inicial
+                </h:link>
+                <h:link class="navbar-item has-text-light " outcome="catalogo">
+                    Catálogo
+                </h:link>
+                <a class="navbar-item has-text-light">
+                    Documentation
+                </a>
+
+                <div class="navbar-item has-text-light has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            About
+                        </a>
+                        <a class="navbar-item">
+                            Jobs
+                        </a>
+                        <a class="navbar-item">
+                            Contact
+                        </a>
+                        <hr class="navbar-divider"/>
+                        <a class="navbar-item">
+                            Report an issue
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <h:link class="navbar-item" outcome="register_form" styleClass="button is-primary">
+                            <strong>Registrar</strong>
+                        </h:link>
+                        <h:link class="navbar-item" outcome="login_form" styleClass="button is-light">
+                            Log in
+                        </h:link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:view>
+</html>
