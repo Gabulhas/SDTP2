@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "utilizadores", schema = "moveis")
+@NamedQuery(name = "utilizadores.getUtilizadorNome", query = "SELECT u from UtilizadoresEntity u where u.nome = :nome")
 public class UtilizadoresEntity {
     private Long id;
     private String nome;

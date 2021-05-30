@@ -10,8 +10,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
 </head>
 <f:view>
+    <h1>Utilizador: #{clientBean.nome}</h1>
+    <h:head value="Logado como #{clientBean.nome}"/>
     <h:outputLabel value="Catálogo"/>
     <h:body>
+
         <h:dataTable value="#{produtoController.produtos}" var="produto" border="1">
             <h:column>
                 <f:facet name="header">
