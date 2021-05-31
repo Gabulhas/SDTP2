@@ -4,7 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "utilizadores", schema = "moveis")
-@NamedQuery(name = "utilizadores.getUtilizadorNome", query = "SELECT u from UtilizadoresEntity u where u.nome = :nome")
+@NamedQueries({
+        @NamedQuery(name = "utilizadores.getUtilizadorNome", query = "SELECT u from UtilizadoresEntity u where u.nome = :nome"),
+        @NamedQuery(name = "utilizadores.getUtilizadorNomeEPassword", query = "SELECT u from UtilizadoresEntity u where u.nome = :nome and u.password = :password")})
+
 public class UtilizadoresEntity {
     private Long id;
     private String nome;

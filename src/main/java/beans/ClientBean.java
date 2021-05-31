@@ -1,31 +1,28 @@
 package beans;
 
+import dao.UtilizadoresDao;
 import entities.UtilizadoresEntity;
+import utils.SessionUtils;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 
 @ManagedBean(name = "clientBean")
 @SessionScoped
 public class ClientBean implements Serializable {
-    public UtilizadoresEntity getUtilizadoresEntity() {
-        return utilizadoresEntity;
-    }
 
-    public void setUtilizadoresEntity(UtilizadoresEntity utilizadoresEntity) {
-        this.utilizadoresEntity = utilizadoresEntity;
-    }
-
+    @EJB
+    UtilizadoresDao utilizadoresDao;
     private String nome;
     private String password;
-    private UtilizadoresEntity utilizadoresEntity;
 
-    @PersistenceContext(unitName = "default")
-    private EntityManager em;
 
     public String getNome() {
         return nome;
@@ -45,7 +42,7 @@ public class ClientBean implements Serializable {
 
     public String validate() {
 
-        UtilizadoresEntity temp = (UtilizadoresEntity) em.createNamedQuery("utilizadores.getUtilizadorNome").setParameter("nome", this.nome).getSingleResult();
+        UtilizadoresEntity temp = utilizadoresDao.getUtilizador(this.nome, this.password);
 
         if (temp.getPassword().equals(this.password)) {
 
@@ -53,7 +50,6 @@ public class ClientBean implements Serializable {
             temp.setPassword(null);
 
             //TODO: Diferenciar entre os tipos de utilizador
-            this.utilizadoresEntity = temp;
             return "catalogo";
         }
 
@@ -62,20 +58,21 @@ public class ClientBean implements Serializable {
     }
 
     public String register() {
-        int tamanhoLista = em.createQuery("SELECT U.nome from UtilizadoresEntity U where U.nome = :nome").setParameter("nome", this.nome).getResultList().size();
-
-
-        //Se o user não está registado
-        if (tamanhoLista == 0) {
-            UtilizadoresEntity temp = new UtilizadoresEntity();
-            temp.setPassword(this.password);
-            temp.setNome(this.nome);
-            temp.setTipo("normal");
-            em.persist(temp);
+        UtilizadoresEntity temp = new UtilizadoresEntity();
+        temp.setPassword(this.password);
+        temp.setNome(this.nome);
+        temp.setTipo("normal");
+        if (utilizadoresDao.registarUtilizador(temp)) {
             return "ler_produto";
         }
         return "index";
 
+    }
+
+    public String logout() {
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "login";
     }
 
 }
