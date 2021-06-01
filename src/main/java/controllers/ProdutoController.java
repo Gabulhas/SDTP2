@@ -1,6 +1,6 @@
 package controllers;
 
-import beans.ProdutoSessionBean;
+import dao.ProdutoSessionBean;
 import entities.ProdutoEntity;
 
 import javax.ejb.EJB;
@@ -28,9 +28,25 @@ public class ProdutoController {
         return produtoSessionBean.getProdutosCategoria(categoria);
     }
 
-    public List<String> getCategoriasDisponiveis(){
+    public List<String> getCategoriasDisponiveis() {
         return produtoSessionBean.getCategoriasDisponiveis();
     }
 
+
+    ProdutoEntity novoProduto = new ProdutoEntity();
+
+    public ProdutoEntity getNovoProduto() {
+        return novoProduto;
+    }
+
+    public void setNovoProduto(ProdutoEntity produtoEntity) {
+        this.novoProduto = produtoEntity;
+    }
+
+
+    public String criarProduto() {
+        produtoSessionBean.criarProduto(novoProduto);
+        return "ler_produto";
+    }
 
 }

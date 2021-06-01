@@ -13,13 +13,13 @@
     <ui:include src="navbar_inicial.xhtml"/>
 
     <div class="container">
-        <h1 class="title is-1">Login</h1>
 
         <div class="columns">
             <div class="column">
             </div>
             <div class="column">
-                <h:form id="loginForm">
+                <h:form id="loginForm" styleClass="box">
+                    <h1 class="title is-1">Login</h1>
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
@@ -38,8 +38,6 @@
                     <h:commandButton value="login"
                                      action="#{clientBean.validate()}" id="submit" styleClass="button is-primary"/>
                 </h:form>
-            </div>
-            <div class="column">
             </div>
             <div class="column">
             </div>

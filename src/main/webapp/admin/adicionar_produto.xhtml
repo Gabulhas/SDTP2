@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Bem vindo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
+</head>
+<f:view>
+    <ui:include src="navbar_admin.xhtml"/>
+    <body>
+    <f:view>
+        <div class="container">
+
+            <div class="columns">
+                <div class="column">
+                </div>
+                <div class="column">
+                    <h:form id="loginForm" styleClass="box">
+                        <h1 class="title is-1">Adicionar Produto</h1>
+                        <div class="field">
+                            <label class="label">Categoria</label>
+                            <div class="control">
+                                <h:inputText maxlength="255" size="255" tabindex="20"
+                                             value="#{produtoController.novoProduto.categoria}" styleClass="input"
+                                             id="categoria"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Preço Compra</label>
+                            <div class="control">
+                                <h:inputText maxlength="255" size="255" tabindex="20"
+                                             value="#{produtoController.novoProduto.precoCompra}" styleClass="input"
+                                             id="precoCompra"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Preço Venda</label>
+                            <div class="control">
+                                <h:inputText maxlength="255" size="255" tabindex="20"
+                                             value="#{produtoController.novoProduto.precoVenda}" styleClass="input"
+                                             id="precoVenda"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Stock Inicial</label>
+                            <div class="control">
+                                <h:inputText maxlength="255" size="255" tabindex="20"
+                                             value="#{produtoController.novoProduto.stock}" styleClass="input"
+                                             id="stock"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Stock de Aviso (Mínimo)</label>
+                            <div class="control">
+                                <h:inputText maxlength="255" size="255" tabindex="20"
+                                             value="#{produtoController.novoProduto.stockMin}" styleClass="input"
+                                             id="stockMinimo"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Modelo Do Produto</label>
+                            <div class="control">
+                                <h:inputText maxlength="255" size="255" tabindex="20"
+                                             value="#{produtoController.novoProduto.modelo}" styleClass="input"
+                                             id="email"/>
+                            </div>
+                        </div>
+                        <h:commandButton value="Adicionar!" styleClass="button is-success"
+                                         action="#{produtoController.criarProduto}"/>
+                    </h:form>
+                </div>
+                <div class="column">
+                </div>
+            </div>
+        </div>
+    </f:view>
+
+    </body>
+</f:view>
+</html>

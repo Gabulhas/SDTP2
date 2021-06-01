@@ -9,12 +9,13 @@
 # Admin
 
 - [ ] CRUD de Produtos
-    - [ ] Criar
+    - [x] Criar
     - [ ] Procurar
     - [ ] Atualizar
     - [ ] Apagar
 - [ ] Procurar Cliente
 - [ ] Notificações
+- [ ] Calcular profits
 
 # Catálogo e Lista de Produtos
 
@@ -25,6 +26,11 @@
 # Users Normais
 
 - [ ] Adicionar ao Carrinho
+
+# Outros
+
+- [ ] (Ver navbar)
+- [ ] Validar Inputs
 
 # Relatório
 

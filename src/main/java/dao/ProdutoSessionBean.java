@@ -1,12 +1,14 @@
-package beans;
+package dao;
 
 import entities.ProdutoEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Stateless
 public class ProdutoSessionBean {
 
@@ -23,6 +25,11 @@ public class ProdutoSessionBean {
 
     public List<String> getCategoriasDisponiveis() {
         return (List<String>) em.createQuery("SELECT DISTINCT(p.categoria) FROM ProdutoEntity  p").getResultList();
+    }
+
+    public ProdutoEntity criarProduto(ProdutoEntity produtoEntity) {
+        em.persist(produtoEntity);
+        return produtoEntity;
     }
 
 

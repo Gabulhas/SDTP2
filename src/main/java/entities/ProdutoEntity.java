@@ -7,21 +7,21 @@ import javax.persistence.*;
 @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM ProdutoEntity p")
 @NamedQuery(name = "Produto.findAllCategory", query = "SELECT p FROM ProdutoEntity p WHERE p.categoria = :categoria")
 public class ProdutoEntity {
-    private Long id;
+    private int id;
     private String categoria;
-    private String precoCompra;
-    private String precoVenda;
+    private double precoCompra;
+    private double precoVenda;
     private int stock;
     private int stockMin;
+    private String modelo;
 
     @Id
-    @GeneratedValue
     @Column(name = "id")
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,21 +37,21 @@ public class ProdutoEntity {
 
     @Basic
     @Column(name = "precoCompra")
-    public String getPrecoCompra() {
+    public double getPrecoCompra() {
         return precoCompra;
     }
 
-    public void setPrecoCompra(String precoCompra) {
+    public void setPrecoCompra(double precoCompra) {
         this.precoCompra = precoCompra;
     }
 
     @Basic
     @Column(name = "precoVenda")
-    public String getPrecoVenda() {
+    public double getPrecoVenda() {
         return precoVenda;
     }
 
-    public void setPrecoVenda(String precoVenda) {
+    public void setPrecoVenda(double precoVenda) {
         this.precoVenda = precoVenda;
     }
 
@@ -75,6 +75,16 @@ public class ProdutoEntity {
         this.stockMin = stockMin;
     }
 
+    @Basic
+    @Column(name = "modelo")
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,24 +92,30 @@ public class ProdutoEntity {
 
         ProdutoEntity that = (ProdutoEntity) o;
 
+        if (id != that.id) return false;
+        if (Double.compare(that.precoCompra, precoCompra) != 0) return false;
+        if (Double.compare(that.precoVenda, precoVenda) != 0) return false;
         if (stock != that.stock) return false;
         if (stockMin != that.stockMin) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (categoria != null ? !categoria.equals(that.categoria) : that.categoria != null) return false;
-        if (precoCompra != null ? !precoCompra.equals(that.precoCompra) : that.precoCompra != null) return false;
-        if (precoVenda != null ? !precoVenda.equals(that.precoVenda) : that.precoVenda != null) return false;
+        if (modelo != null ? !modelo.equals(that.modelo) : that.modelo != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result;
+        long temp;
+        result = id;
         result = 31 * result + (categoria != null ? categoria.hashCode() : 0);
-        result = 31 * result + (precoCompra != null ? precoCompra.hashCode() : 0);
-        result = 31 * result + (precoVenda != null ? precoVenda.hashCode() : 0);
+        temp = Double.doubleToLongBits(precoCompra);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(precoVenda);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + stock;
         result = 31 * result + stockMin;
+        result = 31 * result + (modelo != null ? modelo.hashCode() : 0);
         return result;
     }
 }

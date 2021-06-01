@@ -9,10 +9,10 @@
     <div class="navbar has-background-dark	">
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <h:link class="navbar-item has-text-light " outcome="index">
+                <h:link class="navbar-item has-text-light " outcome="user_index">
                     Página Inicial
                 </h:link>
-                <h:link class="navbar-item has-text-light " outcome="catalogo">
+                <h:link class="navbar-item has-text-light " outcome="user_catalogo">
                     Catálogo
                 </h:link>
                 <a class="navbar-item has-text-light">
@@ -25,7 +25,7 @@
                 <div class="navbar-item">
                     <div class="buttons">
                         <span class="tag">
-                            Admin: <strong> #{clientBean.loggedName} </strong>
+                            Logado: <strong> #{clientBean.loggedName} </strong>
                         </span>
                         <h:form>
                             <h:commandButton styleClass="button is-danger" action="#{clientBean.logout()}" id="logout"

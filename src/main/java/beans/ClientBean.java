@@ -22,6 +22,24 @@ public class ClientBean implements Serializable {
     UtilizadoresDao utilizadoresDao;
     private String nome;
     private String password;
+    private String morada;
+    private String email;
+
+    public String getMorada() {
+        return morada;
+    }
+
+    public void setMorada(String morada) {
+        this.morada = morada;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 
     public String getNome() {
@@ -70,8 +88,10 @@ public class ClientBean implements Serializable {
         temp.setPassword(this.password);
         temp.setNome(this.nome);
         temp.setTipo("normal");
+        temp.setEmail(this.email);
+        temp.setMorada(this.morada);
         if (utilizadoresDao.registarUtilizador(temp)) {
-            return "/user/user_index";
+            return validate();
         }
         //TODO:Mostrar erro
         return "/index";

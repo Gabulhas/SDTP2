@@ -1195,107 +1195,112 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="345" parent="336" name="PRIMARY">
+    <column id="345" parent="336" name="modelo">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="346" parent="336" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="346" parent="337" name="tipo">
+    <column id="347" parent="337" name="tipo">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="347" parent="337" name="quantidade">
+    <column id="348" parent="337" name="quantidade">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="348" parent="337" name="produtoId">
+    <column id="349" parent="337" name="produtoId">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="349" parent="337" name="id">
+    <column id="350" parent="337" name="id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="350" parent="337" name="utilizadorId">
+    <column id="351" parent="337" name="utilizadorId">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="351" parent="337" name="data">
+    <column id="352" parent="337" name="data">
       <Position>6</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="352" parent="337" name="produtoId">
+    <index id="353" parent="337" name="produtoId">
       <ColNames>produtoId</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="353" parent="337" name="utilizadorId">
+    <index id="354" parent="337" name="utilizadorId">
       <ColNames>utilizadorId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="354" parent="337" name="PRIMARY">
+    <key id="355" parent="337" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="355" parent="337" name="produtoId">
+    <foreign-key id="356" parent="337" name="produtoId">
       <ColNames>produtoId</ColNames>
       <RefTableName>produto</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="356" parent="337" name="utilizadorId">
+    <foreign-key id="357" parent="337" name="utilizadorId">
       <ColNames>utilizadorId</ColNames>
       <RefTableName>utilizadores</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="357" parent="338" name="id">
+    <column id="358" parent="338" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="358" parent="338" name="nome">
+    <column id="359" parent="338" name="nome">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="359" parent="338" name="password">
+    <column id="360" parent="338" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="360" parent="338" name="tipo">
+    <column id="361" parent="338" name="tipo">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="361" parent="338" name="email">
+    <column id="362" parent="338" name="email">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="362" parent="338" name="morada">
+    <column id="363" parent="338" name="morada">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="363" parent="338" name="utilizadores_name_uindex">
+    <index id="364" parent="338" name="utilizadores_name_uindex">
       <ColNames>nome</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="364" parent="338" name="PRIMARY">
+    <key id="365" parent="338" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="365" parent="338" name="utilizadores_name_uindex">
+    <key id="366" parent="338" name="utilizadores_name_uindex">
       <ColNames>nome</ColNames>
       <UnderlyingIndexName>utilizadores_name_uindex</UnderlyingIndexName>
     </key>

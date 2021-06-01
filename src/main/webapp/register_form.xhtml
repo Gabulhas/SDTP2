@@ -14,13 +14,20 @@
 <ui:include src="navbar_inicial.xhtml"/>
 <f:view>
     <div class="container">
-        <h1 class="title is-1">Registar</h1>
 
         <div class="columns">
             <div class="column">
             </div>
             <div class="column">
-                <h:form id="loginForm">
+                <h:form id="loginForm" styleClass="box">
+                    <h1 class="title is-1">Registar</h1>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <h:inputText maxlength="255" size="255" tabindex="20"
+                                         value="#{clientBean.email}" styleClass="input" id="email"/>
+                        </div>
+                    </div>
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
@@ -36,11 +43,16 @@
                                            value="#{clientBean.password}" styleClass="input" id="password"/>
                         </div>
                     </div>
-                    <h:commandButton value="login"
+                    <div class="field">
+                        <label class="label">Morada</label>
+                        <div class="control">
+                            <h:inputText maxlength="255" size="20" tabindex="20"
+                                         value="#{clientBean.morada}" styleClass="input" id="morada"/>
+                        </div>
+                    </div>
+                    <h:commandButton value="Registar"
                                      action="#{clientBean.register()}" id="submit" styleClass="button is-primary"/>
                 </h:form>
-            </div>
-            <div class="column">
             </div>
             <div class="column">
             </div>

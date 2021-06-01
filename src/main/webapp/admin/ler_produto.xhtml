@@ -14,25 +14,29 @@
     <ui:include src="navbar_admin.xhtml"/>
     <h:body>
         <div class="container">
-            <h2>
-                Categorias Disponíveis
-            </h2>
-            <h:form>
+            <h1 class="title is-1">Ver Meus Produtos</h1>
+
+            <h:form styleClass="box">
+                <h3 class="title is-3">Categorias Disponíveis</h3>
                 <h:selectOneMenu id="hard-dropdown" value="">
                     <f:selectItems value="#{produtoController.categoriasDisponiveis}" var="c" itemValue="#{c}"
                                    itemLabel="#{c}"/>
                 </h:selectOneMenu>
                 <h:commandButton value="Filtrar" action="result"/>
             </h:form>
-            <h2>
-                Items Disponíveis
-            </h2>
+            <h3 class="title is-3">Items Disponíveis</h3>
             <h:dataTable value="#{produtoController.getProdutos()}" var="produto" border="1" styleClass="table">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="ID"/>
                     </f:facet>
                     <h:outputText value="#{produto.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{produto.modelo}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">

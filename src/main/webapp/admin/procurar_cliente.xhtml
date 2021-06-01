@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Procurar Cliente</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
+</head>
+<f:view>
+    <ui:include src="navbar_admin.xhtml"/>
+    <h:form>
+
+        <div class="field">
+            <label class="label">Procurar por Nome/Email/ID</label>
+            <div class="control">
+                <h:inputText id="inputName" styleClass="input" value="#{utilizadorBean.query}"/>
+            </div>
+        </div>
+
+        <h:commandButton value="Procurar Utilizador" styleClass="button is-link">
+            <f:ajax execute="inputName" render="userCard"/>
+        </h:commandButton>
+        <div class="card container" id="userCard">
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4">#{utilizadorBean.novoUtilizador.nome}</p>
+                        <p class="subtitle is-6">#{utilizadorBean.novoUtilizador.email}</p>
+                    </div>
+                </div>
+
+                <div class="content">
+                    Morada: #{utilizadorBean.novoUtilizador.morada}
+                    <br/>
+                    ID: #{utilizadorBean.novoUtilizador.id}
+                </div>
+            </div>
+        </div>
+    </h:form>
+</f:view>
+</html>
