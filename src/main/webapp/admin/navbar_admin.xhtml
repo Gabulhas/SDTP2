@@ -12,12 +12,19 @@
                 <h:link class="navbar-item has-text-light " outcome="admin_index">
                     Página Inicial
                 </h:link>
-                <h:link class="navbar-item has-text-light " outcome="ler_produto">
-                    Ver Meus Produtos
-                </h:link>
-                <h:link class="navbar-item has-text-light " outcome="adicionar_produto">
-                    Adicionar Produto
-                </h:link>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link has-text-light">
+                        Produtos
+                    </a>
+                    <div class="navbar-dropdown">
+                        <h:link class="navbar-item has-text-dark" outcome="ler_produto">
+                            Ver Meus Produtos
+                        </h:link>
+                        <h:link class="navbar-item has-text-dark" outcome="adicionar_produto">
+                            Adicionar Produto
+                        </h:link>
+                    </div>
+                </div>
                 <h:link class="navbar-item has-text-light " outcome="procurar_cliente">
                     Procurar Cliente
                 </h:link>

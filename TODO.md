@@ -10,32 +10,24 @@
 
 - [ ] CRUD de Produtos
     - [x] Criar
-    - [ ] Procurar
+    - [x] Procurar
     - [ ] Atualizar
     - [ ] Apagar
-- [ ] Procurar Cliente
-- [ ] Notificações
-- [ ] Calcular profits
+- [x] Procurar Cliente
+- [ ] Notificações do Stock
 
 # Catálogo e Lista de Produtos
 
 - [ ] Mostar
-- [ ] Sort por ID/Nome
-- [ ] Filtrar por categoria
-
-# Users Normais
-
-- [ ] Adicionar ao Carrinho
+- [x] Filtrar por categoria
 
 # Outros
-
 - [ ] (Ver navbar)
 - [ ] Validar Inputs
 
 # Relatório
 
 # Extra
-
 - [ ] Pôr bonito
 - [ ] Dar Host no Heroku
 

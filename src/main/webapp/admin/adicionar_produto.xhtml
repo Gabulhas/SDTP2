@@ -25,7 +25,7 @@
                             <label class="label">Categoria</label>
                             <div class="control">
                                 <h:inputText maxlength="255" size="255" tabindex="20"
-                                             value="#{produtoController.novoProduto.categoria}" styleClass="input"
+                                             value="#{produtoBean.novoProduto.categoria}" styleClass="input"
                                              id="categoria"/>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <label class="label">Preço Compra</label>
                             <div class="control">
                                 <h:inputText maxlength="255" size="255" tabindex="20"
-                                             value="#{produtoController.novoProduto.precoCompra}" styleClass="input"
+                                             value="#{produtoBean.novoProduto.precoCompra}" styleClass="input"
                                              id="precoCompra"/>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <label class="label">Preço Venda</label>
                             <div class="control">
                                 <h:inputText maxlength="255" size="255" tabindex="20"
-                                             value="#{produtoController.novoProduto.precoVenda}" styleClass="input"
+                                             value="#{produtoBean.novoProduto.precoVenda}" styleClass="input"
                                              id="precoVenda"/>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <label class="label">Stock Inicial</label>
                             <div class="control">
                                 <h:inputText maxlength="255" size="255" tabindex="20"
-                                             value="#{produtoController.novoProduto.stock}" styleClass="input"
+                                             value="#{produtoBean.novoProduto.stock}" styleClass="input"
                                              id="stock"/>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                             <label class="label">Stock de Aviso (Mínimo)</label>
                             <div class="control">
                                 <h:inputText maxlength="255" size="255" tabindex="20"
-                                             value="#{produtoController.novoProduto.stockMin}" styleClass="input"
+                                             value="#{produtoBean.novoProduto.stockMin}" styleClass="input"
                                              id="stockMinimo"/>
                             </div>
                         </div>
@@ -65,12 +65,12 @@
                             <label class="label">Modelo Do Produto</label>
                             <div class="control">
                                 <h:inputText maxlength="255" size="255" tabindex="20"
-                                             value="#{produtoController.novoProduto.modelo}" styleClass="input"
+                                             value="#{produtoBean.novoProduto.modelo}" styleClass="input"
                                              id="email"/>
                             </div>
                         </div>
                         <h:commandButton value="Adicionar!" styleClass="button is-success"
-                                         action="#{produtoController.criarProduto}"/>
+                                         action="#{produtoBean.criarProduto}"/>
                     </h:form>
                 </div>
                 <div class="column">

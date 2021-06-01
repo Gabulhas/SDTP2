@@ -13,44 +13,53 @@
     <ui:include src="navbar_admin.xhtml"/>
     <h:form styleClass="box container">
 
-        <div class="field">
-            <label class="label">Procurar por Nome/Email/ID</label>
-            <div class="control">
-                <h:inputText id="inputName" styleClass="input" value="#{utilizadorBean.query}"/>
-            </div>
-        </div>
 
-        <h:commandButton value="Procurar Utilizador" styleClass="button is-link">
-            <f:ajax execute="inputName" render="userCard"/>
-        </h:commandButton>
+        <h:form styleClass="box">
+            <h3 class="title is-3">Procurar por Nome/Email/ID</h3>
+
+            <div class="field has-addons">
+                <div class="control">
+                    <h:inputText id="inputName" styleClass="input" value="#{utilizadorBean.query}"/>
+                </div>
+                <div class="control">
+                    <h:commandButton value="Procurar Utilizador" styleClass="button is-link">
+                        <f:ajax execute="inputName" render="userCard"/>
+                    </h:commandButton>
+                </div>
+            </div>
+
+        </h:form>
+
         <br></br>
         <br></br>
-        <div class="container" id="userCard">
-            <div class="field">
-                <label class="label">Email</label>
-                <div class="control">
-                    <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.email}" readonly="true"/>
+        <h:form rendered="#{!empty utilizadorBean.novoUtilizador.nome}">
+            <div class="container" id="userCard">
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.email}" readonly="true"/>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Nome</label>
+                    <div class="control">
+                        <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.nome}" readonly="true"/>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Morada</label>
+                    <div class="control">
+                        <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.morada}" readonly="true"/>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">ID</label>
+                    <div class="control">
+                        <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.id}" readonly="true"/>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label">Nome</label>
-                <div class="control">
-                    <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.nome}" readonly="true"/>
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">Morada</label>
-                <div class="control">
-                    <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.morada}" readonly="true"/>
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">ID</label>
-                <div class="control">
-                    <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.id}" readonly="true"/>
-                </div>
-            </div>
-        </div>
+        </h:form>
     </h:form>
 </f:view>
 </html>

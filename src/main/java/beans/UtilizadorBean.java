@@ -63,6 +63,10 @@ public class UtilizadorBean implements Serializable {
     UtilizadoresEntity novoUtilizador = new UtilizadoresEntity();
 
     public void procurarQuery() {
+        if (query == null) {
+            return;
+        }
+
         if (this.query.contains("@")) {
             novoUtilizador = utilizadoresDao.getUtilizadorPorEmail(query);
         } else {

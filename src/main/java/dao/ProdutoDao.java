@@ -10,7 +10,7 @@ import java.util.List;
 
 @Transactional
 @Stateless
-public class ProdutoSessionBean {
+public class ProdutoDao {
 
     @PersistenceContext(unitName = "default")
     private EntityManager em;
@@ -32,5 +32,24 @@ public class ProdutoSessionBean {
         return produtoEntity;
     }
 
+    public ProdutoEntity getProdutoId(String id) {
+        try {
+            ProdutoEntity temp = (ProdutoEntity) em.createNamedQuery("Produto.findById").setParameter("id", id).getSingleResult();
+            return temp;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    public ProdutoEntity getProdutoModelo(String modelo) {
+        try {
+            ProdutoEntity temp = (ProdutoEntity) em.createNamedQuery("Produto.findByModelo").setParameter("modelo", modelo).getSingleResult();
+            return temp;
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
 
 }
