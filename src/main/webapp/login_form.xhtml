@@ -12,13 +12,38 @@
 <f:view>
     <ui:include src="navbar_inicial.xhtml"/>
 
-    <h:form id="loginForm">
-        <h:inputText maxlength="255" size="20" tabindex="10" value="#{clientBean.nome}"
-                     styleClass="inputField" id="username"/>
-        <h:inputSecret maxlength="255" size="20" tabindex="20"
-                       value="#{clientBean.password}" styleClass="inputField" id="password"/>
-        <h:commandButton value="login"
-                         action="#{clientBean.validate()}" id="submit"/>
-    </h:form>
+    <div class="container">
+        <h1 class="title is-1">Login</h1>
+
+        <div class="columns">
+            <div class="column">
+            </div>
+            <div class="column">
+                <h:form id="loginForm">
+                    <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control">
+                            <h:inputText maxlength="255" size="20" tabindex="10" value="#{clientBean.nome}"
+                                         styleClass="input" id="username"/>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                            <h:inputSecret maxlength="255" size="20" tabindex="20"
+                                           value="#{clientBean.password}" styleClass="input" id="password"/>
+                        </div>
+                    </div>
+                    <h:commandButton value="login"
+                                     action="#{clientBean.validate()}" id="submit" styleClass="button is-primary"/>
+                </h:form>
+            </div>
+            <div class="column">
+            </div>
+            <div class="column">
+            </div>
+        </div>
+    </div>
 </f:view>
 </html>

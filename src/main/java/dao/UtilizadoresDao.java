@@ -17,7 +17,6 @@ public class UtilizadoresDao {
         try {
             UtilizadoresEntity temp = (UtilizadoresEntity) em.createNamedQuery("utilizadores.getUtilizadorNomeEPassword").setParameter("nome", nome).setParameter("password", password).getSingleResult();
             return temp;
-
         } catch (NoResultException e) {
             return null;
         }

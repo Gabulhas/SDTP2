@@ -9,27 +9,35 @@
     <div class="navbar has-background-dark	">
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <h:link class="navbar-item has-text-light " outcome="index">
+                <h:link class="navbar-item has-text-light " outcome="admin_index">
                     Página Inicial
                 </h:link>
-                <h:link class="navbar-item has-text-light " outcome="catalogo">
-                    Catálogo
+                <h:link class="navbar-item has-text-light " outcome="ler_produto">
+                    Ver Meus Produtos
                 </h:link>
                 <a class="navbar-item has-text-light">
-                    Documentation
+                    Adicionar Produto
                 </a>
+                <a class="navbar-item has-text-light">
+                    Consultar Cliente
+                </a>
+                <a class="navbar-item has-text-light">
+                    Ver Transações
+                </a>
+
 
             </div>
 
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <h:link class="navbar-item" outcome="register_form" styleClass="button is-primary">
-                            <strong>Registrar</strong>
-                        </h:link>
-                        <h:link class="navbar-item" outcome="login_form" styleClass="button is-light">
-                            Log in
-                        </h:link>
+                        <span class="tag">
+                            Admin: <strong> #{clientBean.loggedName} </strong>
+                        </span>
+                        <h:form>
+                            <h:commandButton styleClass="button is-danger" action="#{clientBean.logout()}" id="logout"
+                                             value="logout"/>
+                        </h:form>
                     </div>
                 </div>
             </div>

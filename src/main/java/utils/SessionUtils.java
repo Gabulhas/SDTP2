@@ -1,5 +1,7 @@
 package utils;
 
+import entities.UtilizadoresEntity;
+
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,5 +30,23 @@ public class SessionUtils {
             return (String) session.getAttribute("userid");
         else
             return null;
+    }
+
+    public static String getLoggedName() {
+        HttpSession session = SessionUtils.getSession();
+        UtilizadoresEntity utilizadoresEntity = (UtilizadoresEntity) session.getAttribute("user_in_session");
+        return utilizadoresEntity.getNome();
+    }
+
+    public static String getLoggedID() {
+        HttpSession session = SessionUtils.getSession();
+        UtilizadoresEntity utilizadoresEntity = (UtilizadoresEntity) session.getAttribute("user_in_session");
+        return utilizadoresEntity.getId() + "";
+    }
+
+    public static String getLoggedType() {
+        HttpSession session = SessionUtils.getSession();
+        UtilizadoresEntity utilizadoresEntity = (UtilizadoresEntity) session.getAttribute("user_in_session");
+        return utilizadoresEntity.getTipo();
     }
 }

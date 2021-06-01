@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Catálogo Produtos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
+</head>
+<f:view>
+    <ui:include src="navbar_user.xhtml"/>
+    <h:body>
+
+        <div class="container">
+            <h1 class="title is-1">Catálogo</h1>
+
+            <h:dataTable value="#{produtoController.produtos}" var="produto" border="1"
+                         styleClass="table is-hoverable is-fullwidth">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{produto.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="categoria"/>
+                    </f:facet>
+                    <h:outputText value="#{produto.categoria}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Preço"/>
+                    </f:facet>
+                    <h:outputText value="#{produto.precoCompra}€"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Stock"/>
+                    </f:facet>
+                    <h:outputText value="#{produto.stock}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</f:view>
+</html>

@@ -9,6 +9,8 @@
         <class>entities.TransacaoEntity</class>
         <class>entities.UtilizadoresEntity</class>
         <properties>
+            <property name="eclipselink.target-database" value="MySQL"/>
+
         </properties>
     </persistence-unit>
 </persistence>

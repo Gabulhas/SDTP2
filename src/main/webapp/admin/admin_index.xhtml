@@ -6,11 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
-    <title>Página Inicial</title>
+    <title>Bem vindo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
 </head>
 <f:view>
-    <ui:include src="navbar_inicial.xhtml"/>
-    <h1>Pôr uma index page toda bonitinha</h1>
+    <ui:include src="navbar_admin.xhtml"/>
+    <h:outputLabel value="Olá #{clientBean.loggedName}"/>
 </f:view>
 </html>

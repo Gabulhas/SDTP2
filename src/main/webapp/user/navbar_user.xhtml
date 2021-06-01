@@ -16,7 +16,7 @@
                     Catálogo
                 </h:link>
                 <a class="navbar-item has-text-light">
-                    Documentation
+                    Ver Minhas Compras
                 </a>
 
             </div>
@@ -24,12 +24,13 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <h:link class="navbar-item" outcome="register_form" styleClass="button is-primary">
-                            <strong>Registrar</strong>
-                        </h:link>
-                        <h:link class="navbar-item" outcome="login_form" styleClass="button is-light">
-                            Log in
-                        </h:link>
+                        <span class="tag">
+                            Admin: <strong> #{clientBean.loggedName} </strong>
+                        </span>
+                        <h:form>
+                            <h:commandButton styleClass="button is-danger" action="#{clientBean.logout()}" id="logout"
+                                             value="logout"/>
+                        </h:form>
                     </div>
                 </div>
             </div>

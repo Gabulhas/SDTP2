@@ -44,13 +44,21 @@ public class ClientBean implements Serializable {
 
         UtilizadoresEntity temp = utilizadoresDao.getUtilizador(this.nome, this.password);
 
-        if (temp.getPassword().equals(this.password)) {
+        if (temp != null) {
+
+            //Definir sessão do utilizador
+            HttpSession session = SessionUtils.getSession();
+            temp.setPassword(null);
+            session.setAttribute("user_in_session", temp);
 
             //apagamos a password por questões de segurança
-            temp.setPassword(null);
-
             //TODO: Diferenciar entre os tipos de utilizador
-            return "catalogo";
+            if (temp.getTipo().equals("admin")) {
+                return "/admin/admin_index";
+            } else {
+                return "/user/user_index";
+            }
+
         }
 
         //TODO: Caso o utilizador não consiga dar login terá que dar erro
@@ -63,16 +71,28 @@ public class ClientBean implements Serializable {
         temp.setNome(this.nome);
         temp.setTipo("normal");
         if (utilizadoresDao.registarUtilizador(temp)) {
-            return "ler_produto";
+            return "/user/user_index";
         }
-        return "index";
-
+        //TODO:Mostrar erro
+        return "/index";
     }
 
     public String logout() {
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
-        return "login";
+        return "/index?faces-redirect=true";
+    }
+
+    public String getLoggedName() {
+        return SessionUtils.getLoggedName();
+    }
+
+    public String getLoggedID() {
+        return SessionUtils.getLoggedID();
+    }
+
+    public String getLoggedType() {
+        return SessionUtils.getLoggedType();
     }
 
 }
