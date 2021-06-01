@@ -11,7 +11,7 @@
 </head>
 <f:view>
     <ui:include src="navbar_admin.xhtml"/>
-    <h:form>
+    <h:form styleClass="box container">
 
         <div class="field">
             <label class="label">Procurar por Nome/Email/ID</label>
@@ -23,19 +23,31 @@
         <h:commandButton value="Procurar Utilizador" styleClass="button is-link">
             <f:ajax execute="inputName" render="userCard"/>
         </h:commandButton>
-        <div class="card container" id="userCard">
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-content">
-                        <p class="title is-4">#{utilizadorBean.novoUtilizador.nome}</p>
-                        <p class="subtitle is-6">#{utilizadorBean.novoUtilizador.email}</p>
-                    </div>
+        <br></br>
+        <br></br>
+        <div class="container" id="userCard">
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.email}" readonly="true"/>
                 </div>
-
-                <div class="content">
-                    Morada: #{utilizadorBean.novoUtilizador.morada}
-                    <br/>
-                    ID: #{utilizadorBean.novoUtilizador.id}
+            </div>
+            <div class="field">
+                <label class="label">Nome</label>
+                <div class="control">
+                    <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.nome}" readonly="true"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Morada</label>
+                <div class="control">
+                    <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.morada}" readonly="true"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">ID</label>
+                <div class="control">
+                    <h:inputText class="input" value="#{utilizadorBean.novoUtilizador.id}" readonly="true"/>
                 </div>
             </div>
         </div>
