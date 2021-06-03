@@ -9,6 +9,9 @@
     <title>Minhas Compras</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
 </head>
+<f:metadata>
+    <f:event type="preRenderView" listener="#{produtoBean.apagarEstado}"/>
+</f:metadata>
 <f:view>
     <ui:include src="navbar_user.xhtml"/>
     <h:body>
@@ -32,7 +35,11 @@
                     <f:facet name="header">
                         <h:outputText value="Modelo Produto"/>
                     </f:facet>
-                    <h:outputText value="#{transacao.produtoByProdutoId.modelo}"/>
+                    <h:form>
+                        <h:commandButton styleClass="button is-info is-inverted"
+                                         value="#{transacao.produtoByProdutoId.modelo}"
+                                         action="#{produtoBean.consultarProduto(transacao.produtoByProdutoId)}"/>
+                    </h:form>
                 </h:column>
                 <h:column>
                     <f:facet name="header">

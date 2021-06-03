@@ -44,7 +44,12 @@
                     <f:facet name="header">
                         <h:outputText value="Modelo Produto"/>
                     </f:facet>
-                    <h:outputText value="#{transacao.produtoByProdutoId.modelo}"/>
+
+                    <h:form>
+                    <h:commandButton styleClass="button is-info is-inverted"
+                                     value="#{transacao.produtoByProdutoId.modelo}"
+                                     action="#{produtoBean.consultarProduto(transacao.produtoByProdutoId)}"/>
+                    </h:form>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -69,7 +74,12 @@
                     <f:facet name="header">
                         <h:outputText value="Comprador"/>
                     </f:facet>
-                    <h:outputText value="#{transacao.utilizadoresByUtilizadorId.nome}"/>
+
+                    <h:form>
+                    <h:commandButton styleClass="button is-info is-inverted"
+                                     value="#{transacao.utilizadoresByUtilizadorId.nome}"
+                                     action="#{utilizadorBean.consultarUtilizador(transacao.utilizadoresByUtilizadorId)}"/>
+                    </h:form>
                 </h:column>
                 <h:column>
                     <f:facet name="header">

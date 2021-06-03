@@ -9,7 +9,7 @@ import java.sql.Date;
         @NamedQuery(name = "transacao.findAll", query = "SELECT t from TransacaoEntity t"),
         @NamedQuery(name = "transacao.findAllUserID", query = "SELECT t from TransacaoEntity t WHERE t.utilizadorId = :utilizadorId"),
         @NamedQuery(name = "transacao.findAllJoin", query = "SELECT t FROM TransacaoEntity t INNER JOIN ProdutoEntity p ON t.produtoId = p.id INNER JOIN UtilizadoresEntity u on t.utilizadorId = u.id"),
-        @NamedQuery(name = "transacao.findAllJoinByUserID", query = "SELECT t FROM TransacaoEntity t INNER JOIN ProdutoEntity p ON t.produtoId = p.id INNER JOIN UtilizadoresEntity u on t.utilizadorId = u.id WHERE u.id = :utilizadorID"),
+        @NamedQuery(name = "transacao.findAllJoinByUserID", query = "SELECT t FROM TransacaoEntity t INNER JOIN ProdutoEntity p ON t.produtoId = p.id INNER JOIN UtilizadoresEntity u on t.utilizadorId = u.id AND u.id = :utilizadorID"),
 
 })
 public class TransacaoEntity {

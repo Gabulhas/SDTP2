@@ -2,6 +2,7 @@ package filter;
 
 import entities.UtilizadoresEntity;
 
+import javax.faces.application.ResourceHandler;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,10 @@ public class AdminFilter implements Filter {
         if (utilizadoresEntity != null) {
             if (utilizadoresEntity.getTipo().equals("admin")) {
                 // user is logged in, continue request
+                if (!httpServletRequest.getRequestURI().startsWith(httpServletRequest.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER)) { // Skip JSF resources (CSS/JS/Images/etc)
+                    httpServletResponse.setHeader("Cache-Control", "no-cache"); // HTTP 1.1.
+                    httpServletResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+                }
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 // user is not logged in, redirect to login page

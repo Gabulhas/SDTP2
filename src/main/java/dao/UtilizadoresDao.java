@@ -39,8 +39,9 @@ public class UtilizadoresDao {
 
     public boolean registarUtilizador(UtilizadoresEntity utilizadoresEntity) {
         try {
-            System.out.println(utilizadoresEntity.toString());
-            System.out.println(em.toString());
+            if (getUtilizadorPorNome(utilizadoresEntity.getNome()) != null) {
+                return false;
+            }
             em.persist(utilizadoresEntity);
             return true;
         } catch (Exception e) {

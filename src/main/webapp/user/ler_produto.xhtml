@@ -78,21 +78,21 @@
                             <tr>
                                 <td><h:outputText value="#{produto.modelo}"/></td>
                                 <td><h:outputText value="#{produto.categoria}"/></td>
-                                <td><h:outputText value="#{produto.precoCompra}"/></td>
+                                <td><h:outputText value="#{produto.precoVenda}"/></td>
                                 <td><h:outputText value="#{produto.stock}"/></td>
-                                <td><h:form>
+                                <td>
                                     <div class="field has-addons">
                                         <div class="control">
                                             <h:inputText required="true" value="#{produtoBean.quantidadeDeCompra}"
                                                          styleClass="input"/>
                                         </div>
                                         <div class="control">
-                                            <h:commandButton styleClass="button is-info" type="submit"
+                                            <h:commandButton styleClass="button is-info"
                                                              action="#{produtoBean.comprar(produto)}" value="Comprar!"/>
 
                                         </div>
                                     </div>
-                                </h:form></td>
+                                </td>
                             </tr>
                         </ui:repeat>
                         </tbody>

@@ -24,7 +24,7 @@
                     <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
-                            <h:inputText maxlength="255" size="255" tabindex="20"
+                            <h:inputText maxlength="255" size="255" tabindex="20" required="true"
                                          value="#{clientBean.email}" styleClass="input" id="email"/>
                         </div>
                     </div>
@@ -32,6 +32,7 @@
                         <label class="label">Name</label>
                         <div class="control">
                             <h:inputText maxlength="255" size="20" tabindex="10" value="#{clientBean.nome}"
+                                         required="true"
                                          styleClass="input" id="username"/>
                         </div>
                     </div>
@@ -39,20 +40,21 @@
                     <div class="field">
                         <label class="label">Password</label>
                         <div class="control">
-                            <h:inputSecret maxlength="255" size="20" tabindex="20"
+                            <h:inputSecret maxlength="255" size="20" tabindex="20" required="true"
                                            value="#{clientBean.password}" styleClass="input" id="password"/>
                         </div>
                     </div>
                     <div class="field">
                         <label class="label">Morada</label>
                         <div class="control">
-                            <h:inputText maxlength="255" size="20" tabindex="20"
+                            <h:inputText maxlength="255" size="20" tabindex="20" required="true"
                                          value="#{clientBean.morada}" styleClass="input" id="morada"/>
                         </div>
                     </div>
                     <h:commandButton value="Registar"
                                      action="#{clientBean.register()}" id="submit" styleClass="button is-primary"/>
                 </h:form>
+                <h:messages globalOnly="true"/>
             </div>
             <div class="column">
             </div>

@@ -15,7 +15,7 @@
     - [x] Atualizar
     - [x] Apagar
 - [x] Procurar Cliente
-- [ ] Mostrar Transações
+- [x] Mostrar Transações
 - [x] Notificações do Stock
 
 # Catálogo e Lista de Produtos
@@ -25,9 +25,8 @@
 - [ ] Validações
     - [ ] Na Compra
     - [ ] Na criação de um produto
-    - [ ] No registo
-    - [ ] Na procura de um utilizador
-- [ ] Pôr estados nas transações (completa, em espera, cancelada)
+    - [x] No registo
+- [x] Pôr estados nas transações (completa, em espera, cancelada)
 
 - [ ] Relatório
 - [ ] Dar Host no Heroku

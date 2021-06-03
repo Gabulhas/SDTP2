@@ -3,6 +3,7 @@ package filter;
 import entities.UtilizadoresEntity;
 
 import java.io.IOException;
+import javax.faces.application.ResourceHandler;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -39,6 +40,10 @@ public class AuthorizationFilter implements Filter {
         if (utilizadoresEntity != null) {
             if (utilizadoresEntity.getTipo() != null) {
                 // user is logged in, continue request
+                if (!httpServletRequest.getRequestURI().startsWith(httpServletRequest.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER)) { // Skip JSF resources (CSS/JS/Images/etc)
+                    httpServletResponse.setHeader("Cache-Control", "no-cache"); // HTTP 1.1.
+                    httpServletResponse.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+                }
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 // user is not logged in, redirect to login page

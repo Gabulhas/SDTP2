@@ -89,5 +89,10 @@ public class UtilizadorBean implements Serializable {
         }
     }
 
+    public String consultarUtilizador(UtilizadoresEntity utilizadoresEntity) {
+        setQuery(utilizadoresEntity.getNome());
+        return "procurar_cliente";
+    }
+
 }
 

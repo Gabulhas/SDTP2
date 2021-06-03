@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Catálogo Produtos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
+</h:head>
+<h:body>
+    <f:view>
+        <ui:include src="navbar_inicial.xhtml"/>
+        <h:body>
+            <div class="container">
+                <h1 class="title is-1">Catálogo</h1>
+
+                <div class="columns container">
+                    <div class="column">
+                        <h:form styleClass="box">
+                            <h3 class="title is-3">Categorias Disponíveis</h3>
+                            <div class="field has-addons">
+                                <div class="control is-expanded">
+                                    <div class="select is-fullwidth">
+                                        <h:selectOneMenu id="hard-dropdown"
+                                                         value="#{produtoBean.categoriaSelectionada}">
+                                            <f:selectItems value="#{produtoBean.categoriasDisponiveis}" var="c"
+                                                           itemValue="#{c}"
+                                                           itemLabel="#{c} "/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <h:commandButton value="Filtrar" styleClass="button is-link" type="submit"/>
+                                </div>
+                            </div>
+                        </h:form>
+
+                    </div>
+                    <div class="column">
+                        <h:form styleClass="box">
+                            <h3 class="title is-3">Procurar ID ou Modelo</h3>
+
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <h:inputText id="inputName" styleClass="input" value="#{produtoBean.query}"/>
+                                </div>
+                                <div class="control">
+                                    <h:commandButton value="Procurar Produto" styleClass="button is-link"
+                                                     type="submit"/>
+                                    <h:messages globalOnly="true"/>
+                                </div>
+                            </div>
+
+                        </h:form>
+                    </div>
+                </div>
+
+                <h:form id="tabela" rendered="#{not empty produtoBean.produtos}">
+
+                    <table class="table is-fullwidth" border="1">
+                        <thead>
+                        <tr>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">categoria</th>
+                            <th scope="col">Preço Compra</th>
+                            <th scope="col">Stock</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <ui:repeat value="#{produtoBean.produtos}" var="produto">
+                            <tr>
+                                <td><h:outputText value="#{produto.modelo}"/></td>
+                                <td><h:outputText value="#{produto.categoria}"/></td>
+                                <td><h:outputText value="#{produto.precoVenda}"/></td>
+                                <td><h:outputText value="#{produto.stock}"/></td>
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+                    </table>
+
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+</h:body>
+</html>

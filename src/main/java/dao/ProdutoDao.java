@@ -32,9 +32,13 @@ public class ProdutoDao {
         return (List<ProdutoEntity>) em.createNamedQuery("Produto.findForaDeStock").getResultList();
     }
 
-    public ProdutoEntity criarProduto(ProdutoEntity produtoEntity) {
-        em.persist(produtoEntity);
-        return produtoEntity;
+    public boolean criarProduto(ProdutoEntity produtoEntity) {
+        try {
+            em.persist(produtoEntity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public ProdutoEntity mergirProduto(ProdutoEntity produtoEntity) {

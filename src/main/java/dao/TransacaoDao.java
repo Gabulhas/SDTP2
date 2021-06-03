@@ -2,6 +2,7 @@ package dao;
 
 import entities.ProdutoEntity;
 import entities.TransacaoEntity;
+import utils.ToString;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
@@ -39,8 +40,9 @@ public class TransacaoDao {
 
     public boolean criarTransacao(TransacaoEntity transacaoEntity) {
 
+        System.out.println("A Comprar " + ToString.transacaoToString(transacaoEntity));
         //Locked para evitar compras de algo que não existe
-        ProdutoEntity produtoEntity = em.find(ProdutoEntity.class, transacaoEntity.getProdutoId(), LockModeType.NONE);
+        ProdutoEntity produtoEntity = em.find(ProdutoEntity.class, transacaoEntity.getProdutoId());
 
         int novaQuantidadeEmStock = produtoEntity.getStock() - transacaoEntity.getQuantidade();
         //Caso não haja o total disponível

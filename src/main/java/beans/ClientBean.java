@@ -82,9 +82,8 @@ public class ClientBean implements Serializable {
         }
 
         //TODO: Caso o utilizador não consiga dar login terá que dar erro
-
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Conta Inválida."));
-        return "login_form";
+        return "";
     }
 
     public String register() {
@@ -98,11 +97,13 @@ public class ClientBean implements Serializable {
             return validate();
         }
         //TODO:Mostrar erro
-        return "/index";
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Não foi possível criar conta. Existe um utilizador com o mesmo nome."));
+        return "";
     }
 
     public String logout() {
         HttpSession session = SessionUtils.getSession();
+        session.setAttribute("user_in_session", null);
         session.invalidate();
         return "/index?faces-redirect=true";
     }
