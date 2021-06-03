@@ -1,6 +1,7 @@
 package dao;
 
 import entities.UtilizadoresEntity;
+import utils.ToString;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
@@ -33,13 +34,18 @@ public class UtilizadoresDao {
     }
 
     public UtilizadoresEntity getUtilizadorPorNome(String nome) {
-        UtilizadoresEntity temp = (UtilizadoresEntity) em.createQuery("select u from UtilizadoresEntity u where u.nome = :nome").setParameter("nome", nome).getSingleResult();
-        return temp;
+        try {
+            UtilizadoresEntity temp = (UtilizadoresEntity) em.createQuery("select u from UtilizadoresEntity u where u.nome = :nome").setParameter("nome", nome).getSingleResult();
+            return temp;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public boolean registarUtilizador(UtilizadoresEntity utilizadoresEntity) {
         try {
-            if (getUtilizadorPorNome(utilizadoresEntity.getNome()) != null) {
+            UtilizadoresEntity temp = getUtilizadorPorNome(utilizadoresEntity.getNome());
+            if (temp != null) {
                 return false;
             }
             em.persist(utilizadoresEntity);

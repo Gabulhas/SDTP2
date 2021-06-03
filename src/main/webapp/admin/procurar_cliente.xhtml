@@ -5,13 +5,14 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
+<head>
     <title>Procurar Cliente</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
-</h:head>
+</head>
 <f:view>
     <ui:include src="navbar_admin.xhtml"/>
     <h:form styleClass="box container">
+
 
         <h:form styleClass="box">
             <h3 class="title is-3">Procurar por Nome/Email/ID</h3>
@@ -28,6 +29,7 @@
             </div>
 
         </h:form>
+
         <br></br>
         <br></br>
         <h:form rendered="#{!empty utilizadorBean.novoUtilizador.nome}">
@@ -59,7 +61,5 @@
             </div>
         </h:form>
     </h:form>
-    <h:messages globalOnly="true"/>
-
 </f:view>
 </html>

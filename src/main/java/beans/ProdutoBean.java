@@ -157,7 +157,7 @@ public class ProdutoBean implements Serializable {
     }
 
     public void apagarEstado() {
-        this.novoProduto = null;
+        this.novoProduto = new ProdutoEntity();
         this.produtos = new ArrayList<>();
         this.categoriaSelectionada = null;
         this.query = null;

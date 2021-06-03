@@ -11,6 +11,14 @@
 </head>
 <f:view>
     <ui:include src="navbar_user.xhtml"/>
-    <h:outputLabel value="Olá #{clientBean.loggedName}"/>
+    <div class="columns">
+        <div class="column">
+        </div>
+        <div class="column box">
+            <h1 class="title is-1">Olá #{clientBean.loggedName}</h1>
+        </div>
+        <div class="column">
+        </div>
+    </div>
 </f:view>
 </html>
