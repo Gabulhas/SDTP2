@@ -28,11 +28,19 @@ public class TransacaoDao {
         return (List<TransacaoEntity>) em.createNamedQuery("transacao.findAllUserID").setParameter("utilizadorId", utilizadorId).getResultList();
     }
 
+    public List<TransacaoEntity> getTodasJoined() {
+        return (List<TransacaoEntity>) em.createNamedQuery("transacao.findAllJoin").getResultList();
+    }
+
+    public List<TransacaoEntity> getTodasJoinedUtilizadorId(int utilizadorId) {
+        return (List<TransacaoEntity>) em.createNamedQuery("transacao.findAllJoinByUserID").setParameter("utilizadorID", utilizadorId).getResultList();
+    }
+
 
     public boolean criarTransacao(TransacaoEntity transacaoEntity) {
 
         //Locked para evitar compras de algo que não existe
-        ProdutoEntity produtoEntity = em.find(ProdutoEntity.class, transacaoEntity.getProdutoId(), LockModeType.PESSIMISTIC_READ);
+        ProdutoEntity produtoEntity = em.find(ProdutoEntity.class, transacaoEntity.getProdutoId(), LockModeType.NONE);
 
         int novaQuantidadeEmStock = produtoEntity.getStock() - transacaoEntity.getQuantidade();
         //Caso não haja o total disponível
@@ -47,5 +55,33 @@ public class TransacaoDao {
 
     }
 
+    public boolean cancelarTransacao(TransacaoEntity transacaoEntity) {
+
+        //Locked para evitar compras de algo que não existe
+        ProdutoEntity produtoEntity = em.find(ProdutoEntity.class, transacaoEntity.getProdutoId(), LockModeType.NONE);
+
+        transacaoEntity.setTipo("cancelada");
+        int novaQuantidadeEmStock = produtoEntity.getStock() + transacaoEntity.getQuantidade();
+        //Caso não haja o total disponível
+        if (novaQuantidadeEmStock < 0) {
+            return false;
+        } else {
+            em.merge(transacaoEntity);
+            produtoEntity.setStock(novaQuantidadeEmStock);
+            em.merge(produtoEntity);
+            return true;
+        }
+
+    }
+
+    public boolean completarTransacao(TransacaoEntity transacaoEntity) {
+        //Locked para evitar compras de algo que não existe
+        ProdutoEntity produtoEntity = em.find(ProdutoEntity.class, transacaoEntity.getProdutoId(), LockModeType.NONE);
+
+        transacaoEntity.setTipo("completa");
+        //Caso não haja o total disponível
+        em.merge(transacaoEntity);
+        return true;
+    }
 
 }

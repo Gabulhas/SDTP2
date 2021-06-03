@@ -8,27 +8,19 @@ import java.sql.Date;
 @NamedQueries({
         @NamedQuery(name = "transacao.findAll", query = "SELECT t from TransacaoEntity t"),
         @NamedQuery(name = "transacao.findAllUserID", query = "SELECT t from TransacaoEntity t WHERE t.utilizadorId = :utilizadorId"),
+        @NamedQuery(name = "transacao.findAllJoin", query = "SELECT t FROM TransacaoEntity t INNER JOIN ProdutoEntity p ON t.produtoId = p.id INNER JOIN UtilizadoresEntity u on t.utilizadorId = u.id"),
+        @NamedQuery(name = "transacao.findAllJoinByUserID", query = "SELECT t FROM TransacaoEntity t INNER JOIN ProdutoEntity p ON t.produtoId = p.id INNER JOIN UtilizadoresEntity u on t.utilizadorId = u.id WHERE u.id = :utilizadorID"),
 
 })
 public class TransacaoEntity {
-    private Long id;
     private String tipo;
     private int quantidade;
-    private Date data;
     private int produtoId;
-
-
+    private int id;
     private int utilizadorId;
-
-    @Id
-    @Column(name = "id")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Date data;
+    private ProdutoEntity produtoByProdutoId;
+    private UtilizadoresEntity utilizadoresByUtilizadorId;
 
     @Basic
     @Column(name = "tipo")
@@ -51,16 +43,6 @@ public class TransacaoEntity {
     }
 
     @Basic
-    @Column(name = "data")
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    @Basic
     @Column(name = "produtoId")
     public int getProdutoId() {
         return produtoId;
@@ -68,6 +50,16 @@ public class TransacaoEntity {
 
     public void setProdutoId(int produtoId) {
         this.produtoId = produtoId;
+    }
+
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
@@ -80,6 +72,16 @@ public class TransacaoEntity {
         this.utilizadorId = utilizadorId;
     }
 
+    @Basic
+    @Column(name = "data")
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,20 +91,42 @@ public class TransacaoEntity {
 
         if (quantidade != that.quantidade) return false;
         if (produtoId != that.produtoId) return false;
+        if (id != that.id) return false;
         if (utilizadorId != that.utilizadorId) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (tipo != null ? !tipo.equals(that.tipo) : that.tipo != null) return false;
-        return data != null ? data.equals(that.data) : that.data == null;
+        if (data != null ? !data.equals(that.data) : that.data != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
         int result = tipo != null ? tipo.hashCode() : 0;
         result = 31 * result + quantidade;
-        result = 31 * result + (data != null ? data.hashCode() : 0);
         result = 31 * result + produtoId;
+        result = 31 * result + id;
         result = 31 * result + utilizadorId;
-        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (data != null ? data.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "produtoId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public ProdutoEntity getProdutoByProdutoId() {
+        return produtoByProdutoId;
+    }
+
+    public void setProdutoByProdutoId(ProdutoEntity produtoByProdutoId) {
+        this.produtoByProdutoId = produtoByProdutoId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "utilizadorId", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public UtilizadoresEntity getUtilizadoresByUtilizadorId() {
+        return utilizadoresByUtilizadorId;
+    }
+
+    public void setUtilizadoresByUtilizadorId(UtilizadoresEntity utilizadoresByUtilizadorId) {
+        this.utilizadoresByUtilizadorId = utilizadoresByUtilizadorId;
     }
 }

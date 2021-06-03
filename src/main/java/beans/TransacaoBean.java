@@ -23,8 +23,26 @@ public class TransacaoBean {
         return transacaoDao.getTodas();
     }
 
+    public List<TransacaoEntity> getTodasJoin() {
+        return transacaoDao.getTodasJoined();
+    }
+
     public List<TransacaoEntity> getComprasDoProprio() {
         return transacaoDao.getTodasUtilizadorId(Integer.parseInt(SessionUtils.getLoggedID()));
+    }
+
+    public List<TransacaoEntity> getComprasDoProprioJoin() {
+        return transacaoDao.getTodasJoinedUtilizadorId(Integer.parseInt(SessionUtils.getLoggedID()));
+    }
+
+    public String cancelarTransacao(TransacaoEntity transacaoEntity) {
+        transacaoDao.cancelarTransacao(transacaoEntity);
+        return "";
+    }
+
+    public String completarTransacao(TransacaoEntity transacaoEntity) {
+        transacaoDao.completarTransacao(transacaoEntity);
+        return "";
     }
 
 }

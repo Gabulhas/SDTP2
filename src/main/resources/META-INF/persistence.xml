@@ -8,6 +8,7 @@
         <class>entities.ProdutoEntity</class>
         <class>entities.TransacaoEntity</class>
         <class>entities.UtilizadoresEntity</class>
+        <class>entities.TransacaoEntity</class>
         <properties>
             <property name="eclipselink.target-database" value="MySQL"/>
             <property name="toplink.jdbc.url" value="jdbc:mariadb://localhost:3306/moveis"/>

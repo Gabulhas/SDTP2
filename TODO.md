@@ -20,7 +20,7 @@
 
 # Catálogo e Lista de Produtos
 
-- [ ] Mostar
+- [x] Mostar
 - [x] Filtrar por categoria
 - [ ] Validações
     - [ ] Na Compra
