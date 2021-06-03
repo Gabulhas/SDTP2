@@ -5,6 +5,11 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "transacao", schema = "moveis")
+@NamedQueries({
+        @NamedQuery(name = "transacao.findAll", query = "SELECT t from TransacaoEntity t"),
+        @NamedQuery(name = "transacao.findAllUserID", query = "SELECT t from TransacaoEntity t WHERE t.utilizadorId = :utilizadorId"),
+
+})
 public class TransacaoEntity {
     private Long id;
     private String tipo;
@@ -16,7 +21,6 @@ public class TransacaoEntity {
     private int utilizadorId;
 
     @Id
-    @GeneratedValue
     @Column(name = "id")
     public Long getId() {
         return id;
@@ -88,9 +92,7 @@ public class TransacaoEntity {
         if (utilizadorId != that.utilizadorId) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (tipo != null ? !tipo.equals(that.tipo) : that.tipo != null) return false;
-        if (data != null ? !data.equals(that.data) : that.data != null) return false;
-
-        return true;
+        return data != null ? data.equals(that.data) : that.data == null;
     }
 
     @Override

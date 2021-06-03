@@ -6,46 +6,46 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
-    <title>Catálogo Produtos</title>
+    <title>Minhas Compras</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
 </head>
 <f:view>
-    <ui:include src="navbar_inicial.xhtml"/>
+    <ui:include src="navbar_user.xhtml"/>
     <h:body>
-
         <div class="container">
-            <h1 class="title is-1">Catálogo</h1>
+            <h1 class="title is-1">Minhas Compras</h1>
 
-            <h:dataTable value="#{produtoBean.todos}" var="produto" border="1"
+            <h:dataTable value="#{transacaoBean.comprasDoProprio}" var="transacao" border="1"
                          styleClass="table is-hoverable is-fullwidth">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="ID"/>
+                        <h:outputText value="Estado"/>
                     </f:facet>
-                    <h:form id="formId">
-                        <h:commandButton value="#{produto.id}" action="#{produtoBean.batata(produto)}"/>
-                    </h:form>
+                    <h:outputText value="#{transacao.tipo}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="categoria"/>
+                        <h:outputText value="ID Produto"/>
                     </f:facet>
-                    <h:outputText value="#{produto.categoria}"/>
+                    <h:outputText value="#{transacao.id}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Preço"/>
+                        <h:outputText value="Quantidade"/>
                     </f:facet>
-                    <h:outputText value="#{produto.precoCompra}€"/>
+                    <h:outputText value="#{transacao.quantidade}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Stock"/>
+                        <h:outputText value="Data"/>
                     </f:facet>
-                    <h:outputText value="#{produto.stock}"/>
+                    <h:outputText value="#{transacao.data}"/>
                 </h:column>
+
+
             </h:dataTable>
         </div>
     </h:body>
 </f:view>
+
 </html>

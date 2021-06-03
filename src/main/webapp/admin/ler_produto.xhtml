@@ -10,108 +10,92 @@
     <title>Catálogo Produtos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
 </h:head>
-<f:view>
-    <ui:include src="navbar_admin.xhtml"/>
-    <h:body>
-        <div class="container">
-            <h1 class="title is-1">Ver Meus Produtos</h1>
+<h:body>
+    <f:view>
+        <ui:include src="navbar_admin.xhtml"/>
+        <h:body>
+            <div class="container">
+                <h1 class="title is-1">Ver Meus Produtos</h1>
 
 
-            <div class="columns container">
-                <div class="column">
-                    <h:form styleClass="box">
-                        <h3 class="title is-3">Categorias Disponíveis</h3>
-                        <div class="field has-addons">
-                            <div class="control is-expanded">
-                                <div class="select is-fullwidth">
-                                    <h:selectOneMenu id="hard-dropdown" value="#{produtoBean.categoriaSelectionada}">
-                                        <f:selectItems value="#{produtoBean.categoriasDisponiveis}" var="c"
-                                                       itemValue="#{c}"
-                                                       itemLabel="#{c} "/>
-                                    </h:selectOneMenu>
+                <div class="columns container">
+                    <div class="column">
+                        <h:form styleClass="box">
+                            <h3 class="title is-3">Categorias Disponíveis</h3>
+                            <div class="field has-addons">
+                                <div class="control is-expanded">
+                                    <div class="select is-fullwidth">
+                                        <h:selectOneMenu id="hard-dropdown"
+                                                         value="#{produtoBean.categoriaSelectionada}">
+                                            <f:selectItems value="#{produtoBean.categoriasDisponiveis}" var="c"
+                                                           itemValue="#{c}"
+                                                           itemLabel="#{c} "/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <h:commandButton value="Filtrar" styleClass="button is-link" type="submit"/>
                                 </div>
                             </div>
-                            <div class="control">
-                                <h:commandButton value="Filtrar" styleClass="button is-link">
-                                    <f:ajax execute="hard-dropdown" render="tabela"/>
-                                </h:commandButton>
-                            </div>
-                        </div>
-                    </h:form>
+                        </h:form>
 
+                    </div>
+                    <div class="column">
+                        <h:form styleClass="box">
+                            <h3 class="title is-3">Procurar Por ID ou Modelo</h3>
+
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <h:inputText id="inputName" styleClass="input" value="#{produtoBean.query}"/>
+                                </div>
+                                <div class="control">
+                                    <h:commandButton value="Procurar Produto" styleClass="button is-link"
+                                                     type="submit"/>
+                                    <h:messages globalOnly="true"/>
+                                </div>
+                            </div>
+
+                        </h:form>
+                    </div>
                 </div>
-                <div class="column">
-                    <h:form styleClass="box">
-                        <h3 class="title is-3">Procurar Por ID ou Modelo</h3>
 
-                        <div class="field has-addons">
-                            <div class="control">
-                                <h:inputText id="inputName" styleClass="input" value="#{produtoBean.query}"/>
-                            </div>
-                            <div class="control">
-                                <h:commandButton value="Procurar Utilizador" styleClass="button is-link">
-                                    <f:ajax execute="inputName" render="tabela"/>
-                                </h:commandButton>
-                            </div>
-                        </div>
+                <h:form id="tabela" rendered="#{not empty produtoBean.produtos}">
 
-                    </h:form>
-                </div>
+                    <table class="table is-fullwidth" border="1">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID (clique para alterar)</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">categoria</th>
+                            <th scope="col">Preço Compra</th>
+                            <th scope="col">Preço Venda</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Stock Mínimo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <ui:repeat value="#{produtoBean.produtos}" var="produto">
+                            <tr>
+                                <td>
+                                    <h:commandButton styleClass="button is-primary is-inverted" value="#{produto.id}"
+                                                     action="#{produtoBean.escolher(produto)}"/>
+                                </td>
+                                <td><h:outputText value="#{produto.modelo}"/></td>
+                                <td><h:outputText value="#{produto.categoria}"/></td>
+                                <td><h:outputText value="#{produto.precoCompra}"/></td>
+                                <td><h:outputText value="#{produto.precoVenda}"/></td>
+                                <td><h:outputText value="#{produto.stock}"/></td>
+                                <td><h:outputText value="#{produto.stockMin}"/></td>
+                            </tr>
+                        </ui:repeat>
+                        </tbody>
+                    </table>
+
+
+                </h:form>
             </div>
-
-            <h:dataTable value="#{produtoBean.produtos}" var="produto" border="1" styleClass="table is-fullwidth"
-                         id="tabela"
-            >
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="ID (clique para alterar)"/>
-                    </f:facet>
-                    <h:form>
-                        <h:commandButton action="adicionar_produto" value="#{produto.id}"
-                                         styleClass="button is-link is-inverted">
-                            <f:param name="bean_id" value="#{produto.id}"/>
-                        </h:commandButton>
-                    </h:form>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Modelo"/>
-                    </f:facet>
-                    <h:outputText value="#{produto.modelo}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="categoria"/>
-                    </f:facet>
-                    <h:outputText value="#{produto.categoria}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Preço Compra"/>
-                    </f:facet>
-                    <h:outputText value="#{produto.precoCompra}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Preço Venda"/>
-                    </f:facet>
-                    <h:outputText value="#{produto.precoVenda}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Stock"/>
-                    </f:facet>
-                    <h:outputText value="#{produto.stock}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Stock Mínimo"/>
-                    </f:facet>
-                    <h:outputText value="#{produto.stockMin}"/>
-                </h:column>
-
-            </h:dataTable>
-        </div>
-    </h:body>
-</f:view>
+        </h:body>
+    </f:view>
+</h:body>
 </html>

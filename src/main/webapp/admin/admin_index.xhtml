@@ -11,6 +11,48 @@
 </head>
 <f:view>
     <ui:include src="navbar_admin.xhtml"/>
-    <h:outputLabel value="Olá #{clientBean.loggedName}"/>
+    <div class="columns">
+        <div class="column">
+        </div>
+        <div class="column">
+            <h1 class="title box">Bem Vindo <b>#{clientBean.loggedName}</b></h1>
+        </div>
+        <div class="column">
+        </div>
+    </div>
+    <h:form styleClass="box" rendered="#{not empty produtoBean.todosForaDeStock}">
+        <h4>Produtos Fora de Stock</h4>
+
+        <h:dataTable value="#{produtoBean.todosForaDeStock}" var="produto" border="1"
+                     styleClass="table is-hoverable is-fullwidth">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="ID"/>
+                </f:facet>
+                <h:form id="formId">
+                    <h:outputText value="#{produto.id}"/>
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="categoria"/>
+                </f:facet>
+                <h:outputText value="#{produto.categoria}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Stock Atual"/>
+                </f:facet>
+                <h:outputText value="#{produto.stock}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Stock Mínimo"/>
+                </f:facet>
+                <h:outputText value="#{produto.stockMin}"/>
+            </h:column>
+        </h:dataTable>
+
+    </h:form>
 </f:view>
 </html>

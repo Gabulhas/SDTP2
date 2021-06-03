@@ -8,6 +8,7 @@ import javax.persistence.*;
 @NamedQuery(name = "Produto.findById", query = "SELECT p FROM ProdutoEntity p where p.id = :id")
 @NamedQuery(name = "Produto.findByModelo", query = "SELECT p FROM ProdutoEntity p where p.modelo= :modelo")
 @NamedQuery(name = "Produto.findAllCategory", query = "SELECT p FROM ProdutoEntity p WHERE p.categoria = :categoria")
+@NamedQuery(name = "Produto.findForaDeStock", query = "SELECT p FROM ProdutoEntity p WHERE p.stock <= p.stockMin")
 public class ProdutoEntity {
     private int id;
     private String categoria;

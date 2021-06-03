@@ -1,6 +1,7 @@
 package dao;
 
 import entities.ProdutoEntity;
+import entities.UtilizadoresEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,16 +28,33 @@ public class ProdutoDao {
         return (List<String>) em.createQuery("SELECT DISTINCT(p.categoria) FROM ProdutoEntity  p").getResultList();
     }
 
+    public List<ProdutoEntity> getForaDeStock() {
+        return (List<ProdutoEntity>) em.createNamedQuery("Produto.findForaDeStock").getResultList();
+    }
+
     public ProdutoEntity criarProduto(ProdutoEntity produtoEntity) {
         em.persist(produtoEntity);
         return produtoEntity;
     }
 
-    public ProdutoEntity getProdutoId(String id) {
+    public ProdutoEntity mergirProduto(ProdutoEntity produtoEntity) {
+        em.merge(produtoEntity);
+        return produtoEntity;
+    }
+
+    public void apagerProdutoById(int id) {
+        ProdutoEntity temp = this.getProdutoId(id);
+        System.out.println(temp);
+        em.remove(temp);
+    }
+
+    public ProdutoEntity getProdutoId(int id) {
         try {
             ProdutoEntity temp = (ProdutoEntity) em.createNamedQuery("Produto.findById").setParameter("id", id).getSingleResult();
+            System.out.println("CEBOLA->" + temp.getId());
             return temp;
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
 

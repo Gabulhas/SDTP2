@@ -5,7 +5,9 @@ import entities.UtilizadoresEntity;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
 @ManagedBean(name = "utilizadorBean")
@@ -74,9 +76,18 @@ public class UtilizadorBean implements Serializable {
                 Double.parseDouble(query);
                 novoUtilizador = utilizadoresDao.getUtilizadorPorId(query);
             } catch (NumberFormatException nfe) {
-                novoUtilizador = utilizadoresDao.getUtilizadorPorNome(query);
+                try {
+                    novoUtilizador = utilizadoresDao.getUtilizadorPorNome(query);
+                } catch (Exception e) {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cliente Não Encontrado."));
+                }
             }
         }
+        if (novoUtilizador == null) {
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cliente Não Encontrado."));
+        }
     }
+
 }
 

@@ -9,9 +9,6 @@
     <title>Bem vindo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
 </head>
-<f:metadata>
-    <f:event type="preRenderView" listener="#{produtoBean.apagarEstado}"/>
-</f:metadata>
 <f:view>
     <ui:include src="navbar_admin.xhtml"/>
     <body>
@@ -23,7 +20,7 @@
                 </div>
                 <div class="column">
                     <h:form id="loginForm" styleClass="box">
-                        <h1 class="title is-1">Adicionar Produto</h1>
+                        <h1 class="title is-1">Editar Produto</h1>
                         <div class="field">
                             <label class="label">Categoria</label>
                             <div class="control">
@@ -49,7 +46,7 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label class="label">Stock Inicial</label>
+                            <label class="label">Stock Atual</label>
                             <div class="control">
                                 <h:inputText maxlength="255" size="255" tabindex="20"
                                              value="#{produtoBean.novoProduto.stock}" styleClass="input"
@@ -72,8 +69,20 @@
                                              id="email"/>
                             </div>
                         </div>
-                        <h:commandButton value="Adicionar!" styleClass="button is-success"
-                                         action="#{produtoBean.criarProduto}"/>
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <h:commandButton value="Editar!" styleClass="button is-success"
+                                                 action="#{produtoBean.mergirProduto}"/>
+                            </p>
+                            <p class="control">
+                                <h:commandButton value="Cancelar" styleClass="button is-light"
+                                                 action="ler_produto"/>
+                            </p>
+                            <p class="control">
+                                <h:commandButton value="Apagar!" styleClass="button is-danger"
+                                                 action="#{produtoBean.apagarProduto}"/>
+                            </p>
+                        </div>
                     </h:form>
                 </div>
                 <div class="column">
@@ -81,7 +90,6 @@
             </div>
         </div>
     </f:view>
-
     </body>
 </f:view>
 </html>

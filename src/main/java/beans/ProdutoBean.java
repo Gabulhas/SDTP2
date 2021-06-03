@@ -1,22 +1,40 @@
 package beans;
 
 import dao.ProdutoDao;
+import dao.TransacaoDao;
 import entities.ProdutoEntity;
+import entities.TransacaoEntity;
+import utils.SessionUtils;
+import utils.ToString;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.*;
 
 @Named(value = "produtoBean")
-@RequestScoped
-public class ProdutoBean {
+@SessionScoped
+public class ProdutoBean implements Serializable {
 
     @EJB
     private ProdutoDao produtoDao;
+
+    @EJB
+    private TransacaoDao transacaoDao;
+
+    public ProdutoEntity getSelectionado() {
+        return selectionado;
+    }
+
+    public void setSelectionado(ProdutoEntity selectionado) {
+        this.selectionado = selectionado;
+    }
+
+    private ProdutoEntity selectionado;
 
 
     public String getCategoriaSelectionada() {
@@ -43,17 +61,19 @@ public class ProdutoBean {
     private void findAndSetProduto(String query) {
         query = query.trim();
         produtos.clear();
-        ProdutoEntity temp = produtoDao.getProdutoId(query);
+        ProdutoEntity temp = produtoDao.getProdutoId(Integer.parseInt(query));
         if (temp == null) {
             temp = produtoDao.getProdutoModelo(query);
             if (temp == null) {
-                //TODO: ERROR
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Produto Não Encontrado."));
             } else {
                 this.produtos.add(temp);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(""));
             }
 
         } else {
             this.produtos.add(temp);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(""));
         }
 
     }
@@ -85,14 +105,9 @@ public class ProdutoBean {
         this.novoProduto = produtoEntity;
     }
 
-    public String alterarProduto() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        Map<String, String> params =
-                fc.getExternalContext().getRequestParameterMap();
-        String id = params.get("bean_id");
-        System.out.println("A ALTERAR ID: " + id);
+    public String categoria(String id) {
+        System.out.println(id);
         return "procurar_cliente";
-
     }
 
     public String criarProduto() {
@@ -100,4 +115,64 @@ public class ProdutoBean {
         return "ler_produto";
     }
 
+    public String mergirProduto() {
+        produtoDao.mergirProduto(novoProduto);
+        return "ler_produto";
+    }
+
+    public String apagarProduto() {
+        produtoDao.apagerProdutoById(novoProduto.getId());
+        apagarEstado();
+        return "ler_produto";
+    }
+
+    public List<ProdutoEntity> getTodos() {
+        return produtoDao.getProdutos();
+    }
+
+    public List<ProdutoEntity> getTodosForaDeStock() {
+        return produtoDao.getForaDeStock();
+    }
+
+    public String escolher(ProdutoEntity produtoEntity) {
+
+        this.novoProduto = produtoEntity;
+        return "editar_produto";
+    }
+
+    public void apagarEstado() {
+        this.novoProduto = new ProdutoEntity();
+        this.produtos = new ArrayList<>();
+        this.categoriaSelectionada = null;
+        this.query = null;
+
+    }
+
+    public int getQuantidadeDeCompra() {
+        return quantidadeDeCompra;
+    }
+
+    public void setQuantidadeDeCompra(int quantidadeDeCompra) {
+        this.quantidadeDeCompra = quantidadeDeCompra;
+    }
+
+    public String comprar(ProdutoEntity produtoEntity) {
+        TransacaoEntity transacaoEntity = new TransacaoEntity();
+        transacaoEntity.setProdutoId(produtoEntity.getId());
+        transacaoEntity.setQuantidade(quantidadeDeCompra);
+        transacaoEntity.setTipo("espera");
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        transacaoEntity.setData(date);
+        transacaoEntity.setUtilizadorId(Integer.parseInt(SessionUtils.getLoggedID()));
+        System.out.println(ToString.transacaoToString(transacaoEntity));
+        if(transacaoDao.criarTransacao(transacaoEntity)) {
+            return "ver_compras";
+        }
+        //TODO: Não foi possível fazer a transação
+        return "user_catalogo";
+
+    }
+
+    int quantidadeDeCompra;
 }

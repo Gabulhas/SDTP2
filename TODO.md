@@ -8,26 +8,27 @@
 
 # Admin
 
-- [ ] CRUD de Produtos
+- [x] CRUD de Produtos
     - [x] Criar
     - [x] Procurar
-    - [ ] Atualizar
-    - [ ] Apagar
+    - [x] Mudar tabela para estática
+    - [x] Atualizar
+    - [x] Apagar
 - [x] Procurar Cliente
-- [ ] Notificações do Stock
+- [ ] Mostrar Transações
+- [x] Notificações do Stock
 
 # Catálogo e Lista de Produtos
 
 - [ ] Mostar
 - [x] Filtrar por categoria
+- [ ] Validações
+    - [ ] Na Compra
+    - [ ] Na criação de um produto
+    - [ ] No registo
+    - [ ] Na procura de um utilizador
+- [ ] Pôr estados nas transações (completa, em espera, cancelada)
 
-# Outros
-- [ ] (Ver navbar)
-- [ ] Validar Inputs
-
-# Relatório
-
-# Extra
-- [ ] Pôr bonito
+- [ ] Relatório
 - [ ] Dar Host no Heroku
 
